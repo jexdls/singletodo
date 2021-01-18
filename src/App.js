@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
 import {Col, Fade} from 'react-bootstrap';
@@ -18,18 +17,18 @@ function App() {
 }
 
 function Title(props){
-  let titleButtonTxt = props.mode=="show"? "+" : "<";
-  let titleText = props.mode=="show"? "To Do" : "Add to my list";
+  let titleButtonTxt = props.mode==="show"? "+" : "<";
+  let titleText = props.mode==="show"? "To Do" : "Add to my list";
   return (
       <div className="x_Title">
         <Fade appear={true} in={props.fadeIn}>
           <button className="x_grid_title_button" 
             onClick={() => {
               props.setFadeIn(false);
-              setTimeout(function(){props.setMode(prev => prev=="show"? "add":"show")}, 250);
+              setTimeout(function(){props.setMode(prev => prev==="show"? "add":"show")}, 250);
               setTimeout(function(){props.setFadeIn(true)},250);
               }}
-            disabled={props.list.length==0}>
+            disabled={props.list.length===0}>
             {titleButtonTxt}
           </button>
         </Fade>
@@ -53,7 +52,7 @@ function Main(props){
         setTimeout(function(){setIsCommitted(false)}, 1500);
         props.setList(prev => [...prev,mainText]);
         setMainText("");
-      }}disabled={isCommitted || mainText==""}>
+      }}disabled={isCommitted || mainText===""}>
         Commit
       </button>
   );
@@ -77,7 +76,7 @@ function Main(props){
             }}
             disabled={checkBox}/>
         <span className="x_grid_main_note">
-          {props.list.length==0?
+          {props.list.length===0?
             switchMode():
             props.list[props.randListIndex]}
         </span>
@@ -102,7 +101,7 @@ function Main(props){
   
   return (
         <Fade in={props.fadeIn}>
-          {props.mode=="show"?showText:addText}
+          {props.mode==="show"?showText:addText}
         </Fade>
     );
 }
